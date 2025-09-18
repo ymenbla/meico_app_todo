@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, func
+from sqlalchemy import Column, Integer, String, Boolean, DateTime,TIMESTAMP, func
 from app.config.db import Base
 
 class Users(Base):
@@ -9,4 +9,4 @@ class Users(Base):
     email = Column(String(255), nullable=False)
     password = Column(String(255), nullable=False)
     is_active = Column(Boolean, default=True)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    created_at = Column(TIMESTAMP, server_default=func.utc_timestamp())
