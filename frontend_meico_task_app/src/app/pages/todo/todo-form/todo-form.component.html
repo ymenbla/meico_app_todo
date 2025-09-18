@@ -1,0 +1,41 @@
+<mat-toolbar>
+  <button mat-icon-button routerLink="/todo">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>{{ taskId ? 'Editar Tarea' : 'Nueva Tarea' }}</span>
+</mat-toolbar>
+
+<mat-card class="todo-card">
+  <form [formGroup]="form" (ngSubmit)="save()" class="todo-form">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    @if (taskId) {
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="task_status">
+          <mat-option value="pendiente">Pendiente</mat-option>
+          <mat-option value="completado">Completado</mat-option>
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit">
+        {{ taskId ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button mat-stroked-button color="warn" routerLink="/todo">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>
+

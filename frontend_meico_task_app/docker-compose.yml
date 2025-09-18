@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  angular-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: angular17-dev-ymendoza
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm start

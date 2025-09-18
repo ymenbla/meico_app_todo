@@ -1,0 +1,21 @@
+.todo-card {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}

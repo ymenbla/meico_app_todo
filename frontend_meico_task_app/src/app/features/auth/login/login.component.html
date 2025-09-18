@@ -1,0 +1,28 @@
+<div class="container">
+  <mat-card appearance="outlined">
+    <h2>Iniciar Sesión</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="f.email.touched && f.email.invalid">Requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error *ngIf="f.password.touched && f.password.invalid">Requerida</mat-error>
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-flat-button color="primary" [disabled]="form.invalid || loading()">
+          {{ loading() ? 'Ingresando...' : 'Ingresar' }}
+        </button>
+      </div>
+    </form>
+    <p class="register">
+      ¿No tienes cuenta?
+      <a routerLink="/register">Registrarse</a>
+    </p>
+  </mat-card>
+</div>

@@ -1,0 +1,69 @@
+<mat-card class="todo-card">
+  <div class="todo-header">
+    <h2>Tareas</h2>
+    <button mat-flat-button color="primary" routerLink="/todo/new">
+      <mat-icon>add</mat-icon>
+      Nueva Tarea
+    </button>
+  </div>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Título -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+      <mat-cell *matCellDef="let task"> {{ task.title }} </mat-cell>
+    </ng-container>
+
+    <!-- Descripción -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+      <mat-cell *matCellDef="let task"> {{ task.description }} </mat-cell>
+    </ng-container>
+
+    <!-- Estado -->
+    <ng-container matColumnDef="task_status">
+      <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+      <mat-cell *matCellDef="let task">
+        <mat-chip
+          [color]="task.task_status === 'completado' ? 'primary' : 'warn'"
+          selected
+        >
+          {{ task.task_status }}
+        </mat-chip>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Fecha -->
+    <ng-container matColumnDef="created_at">
+      <mat-header-cell *matHeaderCellDef> Creada </mat-header-cell>
+      <mat-cell *matCellDef="let task">
+        {{ task.created_at | date : 'short' }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Acciones -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let task">
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="['/todo/edit', task.id]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteTask(task.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Filas -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</mat-card>
