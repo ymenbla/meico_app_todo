@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 4200
 
 # Comando por defecto: iniciar Angular en modo dev
-CMD ["npm", "start"]
+CMD ["npm", "run", "start", "--", "--host", "0.0.0.0", "--poll", "2000"]
